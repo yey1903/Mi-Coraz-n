@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lluvia de Corazones para Justine</title>
+    <style>
+        body {
+            background-color: #fdf0e6;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #ff1493;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff69b4;
+            transform: rotate(45deg);
+            animation: fall 5s infinite;
+        }
+
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff69b4;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 10px;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -50px;
+                left: calc(50% - 10px);
+                opacity: 1;
+            }
+            100% {
+                top: 100vh;
+                left: calc(50% + 200px);
+                opacity: 0;
+            }
+        }
+
+        #message {
+            display: none;
+            color: #333;
+            font-size: 18px;
+            margin-top: 50px;
+        }
+
+        #revealButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #revealButton:hover {
+            background-color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <h1>Para mi amor, Justine</h1>
+
+    <div id="message">
+        <p>Eres la razón de cada sonrisa y cada suspiro. Te amo más de lo que las palabras pueden expresar.</p>
+    </div>
+
+    <button id="revealButton">Descubre mi mensaje</button>
+
+    <script>
+        document.getElementById('revealButton').addEventListener('click', function() {
+            document.getElementById('message').style.display = 'block';
+            this.style.display = 'none';
+        });
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            document.body.appendChild(heart);
+
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
